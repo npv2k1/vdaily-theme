@@ -1,0 +1,39 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build artifacts
+/assets/css/
+/assets/js/
+*.map
+
+# Composer
+/vendor/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# WordPress
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+
+# Testing
+/coverage/
+/tests/results/
+.phpunit.result.cache
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*~
