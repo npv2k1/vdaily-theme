@@ -1,0 +1,8 @@
+This file is a placeholder for screenshot.png
+
+To add a theme screenshot:
+1. Create an image that is 1200x900 pixels
+2. Save it as screenshot.png in this directory
+3. Delete this file (screenshot.txt)
+
+The screenshot will appear in the WordPress theme selection page.

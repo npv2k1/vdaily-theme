@@ -1,0 +1,43 @@
+/*
+Theme Name: VDaily Child Theme
+Theme URI: https://github.com/npv2k1/vdaily-theme
+Description: A child theme for VDaily Tech Blog Theme. Customize this theme to suit your needs without modifying the parent theme.
+Author: Your Name
+Author URI: https://yourwebsite.com
+Template: vdaily-theme
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: vdaily-child-theme
+Tags: blog, child-theme
+*/
+
+/*
+ * This is the child theme stylesheet.
+ * All parent theme styles will be inherited automatically.
+ * Add your custom styles below this comment.
+ */
+
+/* Example: Customize primary color */
+/*
+:root {
+    --color-primary: #3498db;
+    --color-accent: #e74c3c;
+}
+*/
+
+/* Example: Customize typography */
+/*
+body {
+    font-family: 'Georgia', serif;
+}
+*/
+
+/* Example: Customize article layout */
+/*
+.article-content {
+    max-width: 800px;
+}
+*/
+
+/* Add your custom styles here */

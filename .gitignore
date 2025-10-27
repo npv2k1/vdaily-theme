@@ -38,6 +38,9 @@ wp-content/cache/
 *.swp
 *~
 
+# Packages
+*.zip
+
 # Docker
 .env
 docker-compose.override.yml

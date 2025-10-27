@@ -10,6 +10,7 @@ A modern WordPress theme optimized for technical blogs with focus on exceptional
 - **Minimal Design**: Clean layout, limited color palette, ample white space
 - **Accessible**: WCAG 2.1 AA compliant, keyboard navigation, ARIA labels
 - **Performance**: Lazy loading, optimized assets, minified files, caching
+- **Child Theme Ready**: Full support for WordPress child themes with sample included
 
 ## Requirements
 
@@ -108,6 +109,21 @@ vdaily-theme/
 ```
 
 ## Customization
+
+### Child Theme (Recommended)
+
+For extensive customizations, we recommend creating a child theme. This allows you to modify the theme without losing changes when the parent theme is updated.
+
+**Quick Start:**
+
+1. Copy the `vdaily-child-theme-sample` folder to `/wp-content/themes/`
+2. Rename it to your preferred name (e.g., `my-vdaily-child`)
+3. Activate the child theme in WordPress Admin → Appearance → Themes
+4. Customize `style.css` and `functions.php` as needed
+
+**Resources:**
+- See `vdaily-child-theme-sample/README.md` for detailed instructions
+- [WordPress Child Themes Documentation](https://developer.wordpress.org/themes/advanced-topics/child-themes/)
 
 ### Theme Customizer
 
