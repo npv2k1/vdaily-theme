@@ -42,8 +42,15 @@ echo "Step 4: Creating clean theme archive..."
 TEMP_DIR="${BUILD_DIR}/${THEME_NAME}"
 mkdir -p "${TEMP_DIR}"
 
+# Determine if we're in CI environment
+if [ -n "${CI:-}" ] || [ -n "${GITHUB_ACTIONS:-}" ]; then
+  RSYNC_OPTS="-a"
+else
+  RSYNC_OPTS="-av --progress"
+fi
+
 # Copy only theme files (exclude development and git files)
-rsync -av --progress \
+rsync ${RSYNC_OPTS} \
   --exclude='.git' \
   --exclude='.github' \
   --exclude='.gitignore' \

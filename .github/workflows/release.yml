@@ -19,58 +19,17 @@ jobs:
           node-version: '18'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build production assets
-        run: npm run build
-
       - name: Get version from tag
         id: get_version
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
 
-      - name: Create clean theme archive
-        run: |
-          # Create temporary directory for clean theme
-          THEME_NAME="vdaily-theme"
-          ARCHIVE_DIR="${THEME_NAME}"
-          mkdir -p "${ARCHIVE_DIR}"
-
-          # Copy only theme files (exclude development and git files)
-          rsync -av --progress \
-            --exclude='.git' \
-            --exclude='.github' \
-            --exclude='.gitignore' \
-            --exclude='.dockerignore' \
-            --exclude='.env*' \
-            --exclude='.vscode' \
-            --exclude='.specify' \
-            --exclude='node_modules' \
-            --exclude='specs' \
-            --exclude='src' \
-            --exclude='package.json' \
-            --exclude='package-lock.json' \
-            --exclude='webpack.config.js' \
-            --exclude='docker-compose*.yml*' \
-            --exclude='docker-helper.sh' \
-            --exclude='DOCKER.md' \
-            --exclude='TESTING-DOCKER.md' \
-            --exclude='SCREENSHOT.md' \
-            --exclude='build-theme.sh' \
-            --exclude='build' \
-            --exclude='*.map' \
-            ./ "${ARCHIVE_DIR}/"
-
-          # Create zip archive
-          VERSION="${{ steps.get_version.outputs.VERSION }}"
-          zip -r "${THEME_NAME}-${VERSION}.zip" "${ARCHIVE_DIR}"
-
-          echo "Archive created: ${THEME_NAME}-${VERSION}.zip"
+      - name: Build theme archive
+        run: ./build-theme.sh ${{ steps.get_version.outputs.VERSION }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: vdaily-theme-${{ steps.get_version.outputs.VERSION }}.zip
+          files: build/vdaily-theme-${{ steps.get_version.outputs.VERSION }}.zip
           draft: false
           prerelease: false
           generate_release_notes: true
