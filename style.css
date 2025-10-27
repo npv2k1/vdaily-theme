@@ -1,0 +1,24 @@
+/*
+Theme Name: VDaily Tech Blog Theme
+Theme URI: https://github.com/npv2k1/vdaily-theme
+Author: VDaily Team
+Author URI: https://github.com/npv2k1
+Description: A modern WordPress theme optimized for technical blogs with focus on exceptional readability, minimal design, SEO performance, and developer-friendly code display. Features syntax highlighting for 20+ programming languages, achieves Lighthouse scores of 90+, and maintains WCAG 2.1 AA accessibility standards.
+Version: 1.0.0
+Requires at least: 6.0
+Tested up to: 6.4
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: vdaily-theme
+Tags: blog, one-column, two-columns, right-sidebar, custom-colors, custom-menu, custom-logo, editor-style, featured-images, footer-widgets, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready, accessibility-ready
+
+VDaily Tech Blog Theme, Copyright 2025
+VDaily Tech Blog Theme is distributed under the terms of the GNU GPL
+*/
+
+/* 
+ * This file is required by WordPress for theme recognition
+ * Actual styles are enqueued from /assets/css/main.css
+ * See functions.php for asset enqueuing
+ */

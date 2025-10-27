@@ -1,0 +1,122 @@
+/* Code Block Styles */
+
+code,
+pre {
+    font-family: var(--font-code);
+}
+
+/* Inline code */
+code.inline-code {
+    background: var(--color-code-bg);
+    padding: 0.2em 0.4em;
+    border-radius: var(--border-radius);
+    font-size: 0.9em;
+    color: #e83e8c;
+}
+
+/* Code blocks */
+.code-block-wrapper {
+    position: relative;
+    margin: var(--spacing-lg) 0;
+}
+
+pre {
+    margin: 0;
+    padding: var(--spacing-md);
+    background: var(--color-code-bg);
+    border-radius: var(--border-radius);
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    font-size: inherit;
+    color: inherit;
+}
+
+/* Copy button */
+.copy-code-button {
+    position: absolute;
+    top: var(--spacing-xs);
+    right: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: var(--color-accent);
+    color: #fff;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: var(--font-size-small);
+    opacity: 0;
+    transition: opacity var(--transition-speed);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.code-block-wrapper:hover .copy-code-button,
+.copy-code-button:focus {
+    opacity: 1;
+}
+
+.copy-code-button:hover {
+    background: var(--color-accent-dark);
+}
+
+.copy-code-button.copied {
+    background: #28a745;
+}
+
+.copy-icon {
+    font-size: 1rem;
+}
+
+/* Line numbers (Prism.js plugin) */
+pre.line-numbers {
+    padding-left: 3.8em;
+    position: relative;
+}
+
+.line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em;
+    letter-spacing: -1px;
+    border-right: 1px solid var(--color-gray);
+    user-select: none;
+}
+
+.line-numbers-rows > span {
+    pointer-events: none;
+    display: block;
+    counter-increment: linenumber;
+}
+
+.line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: var(--color-gray-dark);
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
+}
+
+/* Horizontal scroll on mobile */
+@media (max-width: $tablet) {
+    pre {
+        font-size: 13px;
+    }
+    
+    .code-block-wrapper {
+        margin-left: calc(var(--spacing-md) * -1);
+        margin-right: calc(var(--spacing-md) * -1);
+    }
+    
+    pre {
+        border-radius: 0;
+    }
+}
