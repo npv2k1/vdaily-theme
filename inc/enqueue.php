@@ -60,6 +60,15 @@ function vdaily_enqueue_assets() {
         true
     );
     
+    // Search modal script
+    wp_enqueue_script(
+        'vdaily-search-modal',
+        VDAILY_URI . '/assets/js/search-modal.js',
+        array(),
+        VDAILY_VERSION,
+        true
+    );
+    
     // Code copy functionality
     if (is_single()) {
         wp_enqueue_script(
