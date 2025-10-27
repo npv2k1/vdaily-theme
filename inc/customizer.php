@@ -177,6 +177,68 @@ function vdaily_customize_register($wp_customize) {
         'section' => 'vdaily_code_display',
         'type'    => 'checkbox',
     ));
+    
+    // Social Media Section
+    $wp_customize->add_section('vdaily_social_media', array(
+        'title'    => esc_html__('Social Media Links', 'vdaily-theme'),
+        'priority' => 50,
+    ));
+    
+    // Facebook URL
+    $wp_customize->add_setting('vdaily_facebook_url', array(
+        'default'           => '',
+        'type'              => 'option',
+        'capability'        => 'edit_theme_options',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    
+    $wp_customize->add_control('vdaily_facebook_url', array(
+        'label'   => esc_html__('Facebook URL', 'vdaily-theme'),
+        'section' => 'vdaily_social_media',
+        'type'    => 'url',
+    ));
+    
+    // Twitter URL
+    $wp_customize->add_setting('vdaily_twitter_url', array(
+        'default'           => '',
+        'type'              => 'option',
+        'capability'        => 'edit_theme_options',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    
+    $wp_customize->add_control('vdaily_twitter_url', array(
+        'label'   => esc_html__('Twitter URL', 'vdaily-theme'),
+        'section' => 'vdaily_social_media',
+        'type'    => 'url',
+    ));
+    
+    // GitHub URL
+    $wp_customize->add_setting('vdaily_github_url', array(
+        'default'           => '',
+        'type'              => 'option',
+        'capability'        => 'edit_theme_options',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    
+    $wp_customize->add_control('vdaily_github_url', array(
+        'label'   => esc_html__('GitHub URL', 'vdaily-theme'),
+        'section' => 'vdaily_social_media',
+        'type'    => 'url',
+    ));
+    
+    // YouTube URL
+    $wp_customize->add_setting('vdaily_youtube_url', array(
+        'default'           => '',
+        'type'              => 'option',
+        'capability'        => 'edit_theme_options',
+        'sanitize_callback' => 'esc_url_raw',
+    ));
+    
+    $wp_customize->add_control('vdaily_youtube_url', array(
+        'label'   => esc_html__('YouTube URL', 'vdaily-theme'),
+        'section' => 'vdaily_social_media',
+        'type'    => 'url',
+    ));
 }
 
 /**

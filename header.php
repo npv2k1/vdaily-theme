@@ -15,29 +15,35 @@
 <div id="page" class="site">
     <header id="masthead" class="site-header" role="banner">
         <div class="container">
-            <div class="site-branding">
-                <?php
-                if (has_custom_logo()) {
-                    the_custom_logo();
-                } else {
-                    ?>
-                    <h1 class="site-title">
-                        <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
-                            <?php bloginfo('name'); ?>
-                        </a>
-                    </h1>
+            <div class="header-wrapper">
+                <div class="site-branding">
                     <?php
-                    $description = get_bloginfo('description', 'display');
-                    if ($description || is_customize_preview()) {
+                    if (has_custom_logo()) {
+                        the_custom_logo();
+                    } else {
                         ?>
-                        <p class="site-description"><?php echo $description; ?></p>
+                        <h1 class="site-title">
+                            <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+                                2k1
+                            </a>
+                        </h1>
                         <?php
                     }
-                }
-                ?>
-            </div><!-- .site-branding -->
+                    ?>
+                </div><!-- .site-branding -->
 
-            <?php get_template_part('template-parts/navigation/nav', 'primary'); ?>
+                <?php get_template_part('template-parts/navigation/nav', 'primary'); ?>
+
+                <div class="header-icons">
+                    <?php vdaily_social_media_icons('header'); ?>
+                    <button class="header-icon search-toggle" aria-label="Search">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
         </div><!-- .container -->
     </header><!-- #masthead -->
 

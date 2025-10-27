@@ -13,6 +13,7 @@ module.exports = (env, argv) => {
             navigation: './src/js/navigation.js',
             'code-copy': './src/js/code-copy.js',
             'reading-progress': './src/js/reading-progress.js',
+            'search-modal': './src/js/search-modal.js',
         },
         output: {
             path: path.resolve(__dirname, 'assets'),
