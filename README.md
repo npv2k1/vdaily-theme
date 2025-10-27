@@ -10,6 +10,7 @@ A modern WordPress theme optimized for technical blogs with focus on exceptional
 - **Minimal Design**: Clean layout, limited color palette, ample white space
 - **Accessible**: WCAG 2.1 AA compliant, keyboard navigation, ARIA labels
 - **Performance**: Lazy loading, optimized assets, minified files, caching
+- **Child Theme Ready**: Full support for WordPress child themes with sample included
 
 ## Requirements
 
