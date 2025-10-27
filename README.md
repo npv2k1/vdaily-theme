@@ -209,6 +209,42 @@ This theme is licensed under the GNU General Public License v2 or later.
 - WCAG 2.1 AA accessible
 - Performance optimized (Lighthouse 90+)
 
+## Release Process
+
+### Automated Releases via GitHub Actions
+
+The theme uses GitHub Actions to automatically build and release clean theme archives:
+
+1. **Create a version tag**: `git tag -a v1.0.0 -m "Release version 1.0.0"`
+2. **Push the tag**: `git push origin v1.0.0`
+3. **GitHub Actions will**:
+   - Install dependencies
+   - Build production assets
+   - Create a clean theme archive (excluding dev files)
+   - Publish as a GitHub release
+
+The released archive will contain only WordPress theme files - no git, specs, node_modules, or development files.
+
+### Manual Build for Testing
+
+You can build the theme archive locally for testing:
+
+```bash
+# Build with version number
+./build-theme.sh 1.0.0
+
+# Build with default "dev" version
+./build-theme.sh
+
+# The archive will be created in: build/vdaily-theme-{version}.zip
+```
+
+The build script:
+- Installs dependencies
+- Builds production assets (webpack)
+- Creates a clean theme archive
+- Excludes all development files
+
 ## Contributing
 
 Contributions are welcome! Please read the contribution guidelines before submitting pull requests.

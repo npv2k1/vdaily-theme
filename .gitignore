@@ -41,3 +41,6 @@ wp-content/cache/
 # Docker
 .env
 docker-compose.override.yml
+
+# Build directory (theme release archives)
+/build/
