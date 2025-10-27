@@ -12,10 +12,9 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Enqueue theme styles and scripts
+ * Enqueue parent theme styles (for child theme compatibility)
  */
-function vdaily_enqueue_assets() {
-    
+function vdaily_parent_theme_enqueue_styles() {
     // Main stylesheet
     wp_enqueue_style(
         'vdaily-style',
@@ -32,6 +31,15 @@ function vdaily_enqueue_assets() {
         VDAILY_VERSION,
         'print'
     );
+}
+
+/**
+ * Enqueue theme styles and scripts
+ */
+function vdaily_enqueue_assets() {
+    
+    // Enqueue parent theme styles
+    vdaily_parent_theme_enqueue_styles();
     
     // Syntax highlighting (Prism.js)
     $syntax_theme = get_option('vdaily_syntax_theme', 'tomorrow');
