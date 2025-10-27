@@ -73,7 +73,9 @@ $popular_tags = get_tags(array(
         </div>
     <?php endif; ?>
 
-    <div class="devto-social-section">
-        <?php vdaily_social_media_icons('sidebar'); ?>
-    </div>
+    <?php if (function_exists('vdaily_social_media_icons')) : ?>
+        <div class="devto-social-section">
+            <?php vdaily_social_media_icons('sidebar'); ?>
+        </div>
+    <?php endif; ?>
 </div>

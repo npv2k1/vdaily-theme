@@ -58,7 +58,7 @@ $posts_query = new WP_Query($args);
                 $author_name = get_the_author();
                 $author_avatar = get_avatar_url($author_id, array('size' => 40));
                 $comments_count = get_comments_number();
-                $reading_time = vdaily_reading_time();
+                $reading_time = function_exists('vdaily_reading_time') ? vdaily_reading_time() : '5';
                 $categories = get_the_category();
         ?>
                 <article class="devto-post-card">
@@ -104,18 +104,18 @@ $posts_query = new WP_Query($args);
 
                     <div class="post-card-footer">
                         <div class="post-reactions">
-                            <button class="reaction-btn" aria-label="Like">
+                            <span class="reaction-display" title="Reactions coming soon">
                                 <span class="reaction-icon">❤️</span>
                                 <span class="reaction-count">0</span>
-                            </button>
-                            <button class="reaction-btn" aria-label="Unicorn">
+                            </span>
+                            <span class="reaction-display" title="Reactions coming soon">
                                 <span class="reaction-icon">🦄</span>
                                 <span class="reaction-count">0</span>
-                            </button>
-                            <button class="reaction-btn" aria-label="Bookmark">
+                            </span>
+                            <span class="reaction-display" title="Reactions coming soon">
                                 <span class="reaction-icon">🔖</span>
                                 <span class="reaction-count">0</span>
-                            </button>
+                            </span>
                         </div>
                         <div class="post-meta-info">
                             <a href="<?php the_permalink(); ?>#comments" class="comments-link">

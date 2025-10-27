@@ -50,7 +50,7 @@ $popular_query = new WP_Query($popular_args);
                     $popular_query->the_post();
                     $post_count++;
                     $comments_count = get_comments_number();
-                    $reactions_count = rand(5, 50); // Placeholder for reactions
+                    $reactions_count = 12; // Placeholder for reactions display
                 ?>
                     <article class="trending-post-item">
                         <a href="<?php the_permalink(); ?>" class="trending-post-link">
@@ -107,7 +107,7 @@ $popular_query = new WP_Query($popular_args);
                         <div class="comment-content">
                             <a href="<?php echo esc_url(get_comment_link($comment)); ?>" class="comment-link">
                                 <strong><?php echo esc_html($comment->comment_author); ?></strong>
-                                <?php echo wp_trim_words($comment->comment_content, 10); ?>
+                                <?php echo wp_trim_words(esc_html($comment->comment_content), 10); ?>
                             </a>
                         </div>
                     </div>
