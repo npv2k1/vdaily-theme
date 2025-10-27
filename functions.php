@@ -32,6 +32,7 @@ require_once VDAILY_DIR . '/inc/performance.php';
 require_once VDAILY_DIR . '/inc/accessibility.php';
 require_once VDAILY_DIR . '/inc/code-highlighting.php';
 require_once VDAILY_DIR . '/inc/widgets/popular-posts.php';
+require_once VDAILY_DIR . '/inc/social-media.php';
 
 /**
  * Theme setup
