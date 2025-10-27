@@ -36,6 +36,7 @@ function vdaily_setup() {
     // Register navigation menus
     register_nav_menus(array(
         'primary' => esc_html__('Primary Menu', 'vdaily-theme'),
+        'footer'  => esc_html__('Footer Menu', 'vdaily-theme'),
     ));
     
     // Switch default core markup to output valid HTML5
