@@ -1,6 +1,6 @@
 <?php
 /**
- * The front page template file
+ * The front page template file - Dev.to inspired layout
  *
  * @package VDaily_Theme
  * @since 1.0.0
@@ -9,27 +9,23 @@
 get_header();
 ?>
 
-<main id="primary" class="site-main home-page" role="main">
+<main id="primary" class="site-main home-page devto-layout" role="main">
 
-    <?php
-    // Hero Section with Featured Posts
-    get_template_part('template-parts/home/hero', 'section');
-    ?>
+    <div class="devto-container">
+        <!-- Left Sidebar: Navigation & Tags -->
+        <aside class="devto-left-sidebar">
+            <?php get_template_part('template-parts/home/left', 'sidebar'); ?>
+        </aside>
 
-    <div class="home-content-wrapper">
-        <div class="home-main-content">
-            <?php
-            // Content Section with Tabs and Articles
-            get_template_part('template-parts/home/content', 'section');
-            ?>
+        <!-- Main Content Area: Posts Feed -->
+        <div class="devto-main-content">
+            <?php get_template_part('template-parts/home/posts', 'feed'); ?>
         </div>
 
-        <div class="home-sidebar">
-            <?php
-            // Sidebar with Popular Posts
-            get_sidebar();
-            ?>
-        </div>
+        <!-- Right Sidebar: Info & Widgets -->
+        <aside class="devto-right-sidebar">
+            <?php get_template_part('template-parts/home/right', 'sidebar'); ?>
+        </aside>
     </div>
 
 </main><!-- #primary -->
