@@ -35,14 +35,35 @@ A modern WordPress theme optimized for technical blogs with focus on exceptional
 
 ## Development
 
-### Prerequisites
+### Docker Development (Recommended)
+
+The easiest way to develop and preview the theme is using Docker Compose:
+
+```bash
+# Copy environment file
+cp .env.example .env
+
+# Start WordPress with the theme
+docker-compose up -d
+
+# Access WordPress at http://localhost:8080
+# Access phpMyAdmin at http://localhost:8081
+```
+
+See [DOCKER.md](DOCKER.md) for complete Docker setup documentation.
+
+### Local Development
+
+If you prefer local development without Docker:
+
+#### Prerequisites
 
 ```bash
 node -v  # Should be 18.x or higher
 npm -v   # Should be 9.x or higher
 ```
 
-### Setup
+#### Setup
 
 ```bash
 # Install dependencies
