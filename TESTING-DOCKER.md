@@ -9,11 +9,12 @@ Before testing, ensure you have:
 ```bash
 # Check Docker installation
 docker --version
-# Expected output: Docker version 20.x or higher
+# Expected output: Docker version 20.10.0 or higher
 
 # Check Docker Compose installation
 docker-compose --version
-# Expected output: Docker Compose version 1.29.x or higher (or v2.x.x)
+# Expected output: Docker Compose version 1.29.0+ or v2.0.0+
+# Note: Docker Compose v1 is deprecated, v2 is recommended
 
 # Check if Docker is running
 docker ps
@@ -247,8 +248,12 @@ docker-compose up -d
 # Check database logs
 docker-compose logs db
 
-# Wait for database to fully start (usually 30-60 seconds)
-# Then restart WordPress
+# Wait for database to be ready
+docker-compose exec db mysqladmin ping -h localhost --silent
+# If it returns successfully, database is ready
+
+# If not ready yet, wait a few seconds and try again
+# Once ready, restart WordPress
 docker-compose restart wordpress
 ```
 

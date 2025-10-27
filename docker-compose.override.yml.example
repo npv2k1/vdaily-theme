@@ -31,8 +31,8 @@ services:
   # Example: Add WP-CLI service
   # wpcli:
   #   image: wordpress:cli
-  #   volumes_from:
-  #     - wordpress
+  #   volumes:
+  #     - wordpress_data:/var/www/html
   #   depends_on:
   #     - db
   #     - wordpress
