@@ -1,0 +1,49 @@
+# Docker Compose Override Example
+#
+# Copy this file to docker-compose.override.yml to customize your local setup
+# The override file is ignored by git (.gitignore)
+#
+# Common use cases:
+# - Change ports
+# - Add development tools
+# - Mount additional volumes
+# - Configure xdebug
+# - Add custom environment variables
+
+version: '3.8'
+
+services:
+  wordpress:
+    # Example: Change port
+    # ports:
+    #   - "9000:80"
+    
+    # Example: Add Xdebug for PHP debugging
+    # environment:
+    #   XDEBUG_MODE: develop,debug
+    #   XDEBUG_CONFIG: client_host=host.docker.internal
+    
+    # Example: Mount additional directories
+    # volumes:
+    #   - ./custom-plugins:/var/www/html/wp-content/plugins/custom-plugins
+    #   - ./test-data:/var/www/html/test-data
+
+  # Example: Add WP-CLI service
+  # wpcli:
+  #   image: wordpress:cli
+  #   volumes:
+  #     - wordpress_data:/var/www/html
+  #   depends_on:
+  #     - db
+  #     - wordpress
+  #   networks:
+  #     - vdaily-network
+
+  # Example: Add MailHog for email testing
+  # mailhog:
+  #   image: mailhog/mailhog
+  #   ports:
+  #     - "8025:8025"
+  #     - "1025:1025"
+  #   networks:
+  #     - vdaily-network

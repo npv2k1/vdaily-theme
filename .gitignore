@@ -37,3 +37,7 @@ wp-content/cache/
 *.bak
 *.swp
 *~
+
+# Docker
+.env
+docker-compose.override.yml

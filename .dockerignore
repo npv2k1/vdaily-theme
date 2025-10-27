@@ -1,0 +1,43 @@
+# Node modules
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Git
+.git/
+.gitignore
+.github/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+.env.local
+
+# Documentation
+README.md
+SCREENSHOT.md
+specs/
+
+# Testing
+coverage/
+tests/
+.phpunit.result.cache
+
+# Build artifacts that aren't needed
+*.map
+
+# Docker files themselves
+docker-compose.yml
+.dockerignore
+Dockerfile
