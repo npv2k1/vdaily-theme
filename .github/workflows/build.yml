@@ -1,0 +1,265 @@
+name: Build and Test
+
+on:
+  push:
+    branches: [main, develop, 'copilot/**']
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  build-parent-theme:
+    name: Build Parent Theme
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build theme assets
+        run: npm run build
+
+      - name: Check for build artifacts
+        run: |
+          if [ ! -f "assets/css/main.css"]; then
+            echo "Error: main.css not found"
+            exit 1
+          fi
+          if [ ! -f "assets/js/main.js"]; then
+            echo "Error: main.js not found"
+            exit 1
+          fi
+          echo "✓ Build artifacts verified"
+
+      - name: Upload parent theme artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: parent-theme-assets
+          path: |
+            assets/
+          retention-days: 7
+
+  validate-child-theme:
+    name: Validate Child Theme
+    runs-on: ubuntu-latest
+    needs: build-parent-theme
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+
+      - name: Validate child theme structure
+        run: |
+          echo "=== Validating Child Theme Structure ==="
+
+          # Check if child theme directory exists
+          if [ ! -d "vdaily-child-theme-sample"]; then
+            echo "✗ Child theme directory not found"
+            exit 1
+          fi
+          echo "✓ Child theme directory exists"
+
+          # Check required files
+          if [ ! -f "vdaily-child-theme-sample/style.css"]; then
+            echo "✗ style.css not found"
+            exit 1
+          fi
+          echo "✓ style.css found"
+
+          if [ ! -f "vdaily-child-theme-sample/functions.php"]; then
+            echo "✗ functions.php not found"
+            exit 1
+          fi
+          echo "✓ functions.php found"
+
+          # Validate PHP syntax
+          echo ""
+          echo "=== Validating PHP Syntax ==="
+          php -l vdaily-child-theme-sample/functions.php
+          if [$? -ne 0]; then
+            echo "✗ PHP syntax error in functions.php"
+            exit 1
+          fi
+          echo "✓ PHP syntax valid"
+
+          # Check style.css headers
+          echo ""
+          echo "=== Validating style.css Headers ==="
+          if ! grep -q "Theme Name:" vdaily-child-theme-sample/style.css; then
+            echo "✗ Theme Name header missing"
+            exit 1
+          fi
+          echo "✓ Theme Name header found"
+
+          if ! grep -q "Template: vdaily-theme" vdaily-child-theme-sample/style.css; then
+            echo "✗ Template header missing or incorrect"
+            exit 1
+          fi
+          echo "✓ Template header correct"
+
+          if ! grep -q "Version:" vdaily-child-theme-sample/style.css; then
+            echo "✗ Version header missing"
+            exit 1
+          fi
+          echo "✓ Version header found"
+
+          # Check functions.php for required function
+          echo ""
+          echo "=== Validating functions.php ==="
+          if ! grep -q "vdaily_child_enqueue_styles" vdaily-child-theme-sample/functions.php; then
+            echo "✗ vdaily_child_enqueue_styles function not found"
+            exit 1
+          fi
+          echo "✓ Enqueue function found"
+
+          if ! grep -q "wp_enqueue_style" vdaily-child-theme-sample/functions.php; then
+            echo "✗ wp_enqueue_style calls not found"
+            exit 1
+          fi
+          echo "✓ wp_enqueue_style calls found"
+
+          echo ""
+          echo "=== ✓ All validations passed ==="
+
+  package-child-theme:
+    name: Package Child Theme
+    runs-on: ubuntu-latest
+    needs: validate-child-theme
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Create child theme package
+        run: |
+          echo "=== Creating Child Theme Package ==="
+          cd vdaily-child-theme-sample
+          zip -r ../vdaily-child-theme-sample.zip . -x ".*" -x "__MACOSX"
+          cd ..
+
+          # Verify package was created
+          if [ ! -f "vdaily-child-theme-sample.zip"]; then
+            echo "✗ Failed to create package"
+            exit 1
+          fi
+
+          # Show package size
+          SIZE=$(du -h vdaily-child-theme-sample.zip | cut -f1)
+          echo "✓ Package created: vdaily-child-theme-sample.zip ($SIZE)"
+
+          # List contents
+          echo ""
+          echo "Package contents:"
+          unzip -l vdaily-child-theme-sample.zip
+
+      - name: Upload child theme package
+        uses: actions/upload-artifact@v4
+        with:
+          name: child-theme-package
+          path: vdaily-child-theme-sample.zip
+          retention-days: 30
+
+  test-integration:
+    name: Integration Test
+    runs-on: ubuntu-latest
+    needs: build-parent-theme
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          coverage: none
+
+      - name: Download parent theme artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: parent-theme-assets
+          path: assets/
+
+      - name: Validate parent theme structure
+        run: |
+          echo "=== Validating Parent Theme Structure ==="
+
+          # Check required PHP files
+          php -l functions.php
+          php -l inc/enqueue.php
+          php -l inc/setup.php
+
+          # Check for new parent theme function
+          if ! grep -q "vdaily_parent_theme_enqueue_styles" inc/enqueue.php; then
+            echo "✗ vdaily_parent_theme_enqueue_styles function not found"
+            exit 1
+          fi
+          echo "✓ Parent theme enqueue function found"
+
+          # Validate that parent theme uses correct directory functions
+          if ! grep -q "get_template_directory()" functions.php; then
+            echo "✗ get_template_directory() not used"
+            exit 1
+          fi
+          echo "✓ get_template_directory() found"
+
+          echo ""
+          echo "=== ✓ Parent theme validation passed ==="
+
+  validate-documentation:
+    name: Validate Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check documentation files
+        run: |
+          echo "=== Validating Documentation ==="
+
+          # Check main documentation
+          if [ ! -f "CHILD-THEME.md"]; then
+            echo "✗ CHILD-THEME.md not found"
+            exit 1
+          fi
+          echo "✓ CHILD-THEME.md found"
+
+          # Check child theme README
+          if [ ! -f "vdaily-child-theme-sample/README.md"]; then
+            echo "✗ Child theme README.md not found"
+            exit 1
+          fi
+          echo "✓ Child theme README.md found"
+
+          # Check that main README mentions child themes
+          if ! grep -q -i "child theme" README.md; then
+            echo "✗ Main README doesn't mention child themes"
+            exit 1
+          fi
+          echo "✓ Main README mentions child themes"
+
+          # Check documentation size (should be substantial)
+          CHILDTHEME_LINES=$(wc -l < CHILD-THEME.md)
+          if ["$CHILDTHEME_LINES" -lt 200]; then
+            echo "✗ CHILD-THEME.md too short ($CHILDTHEME_LINES lines)"
+            exit 1
+          fi
+          echo "✓ CHILD-THEME.md has $CHILDTHEME_LINES lines"
+
+          echo ""
+          echo "=== ✓ Documentation validation passed ==="
