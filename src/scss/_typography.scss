@@ -9,16 +9,43 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-primary);
 }
 
-h1 { font-size: var(--font-size-h1); }
-h2 { font-size: var(--font-size-h2); }
-h3 { font-size: var(--font-size-h3); }
-h4 { font-size: var(--font-size-h4); }
-h5 { font-size: var(--font-size-h5); }
-h6 { font-size: var(--font-size-h6); }
+h1 { 
+    font-size: var(--font-size-h1);
+    margin-top: var(--spacing-xl);
+}
+
+h2 { 
+    font-size: var(--font-size-h2);
+    margin-top: var(--spacing-xl);
+}
+
+h3 { 
+    font-size: var(--font-size-h3); 
+}
+
+h4 { 
+    font-size: var(--font-size-h4); 
+}
+
+h5 { 
+    font-size: var(--font-size-h5); 
+}
+
+h6 { 
+    font-size: var(--font-size-h6); 
+}
 
 p {
     margin-top: 0;
     margin-bottom: var(--spacing-md);
+    line-height: var(--line-height-base);
+}
+
+/* First paragraph in content */
+.entry-content > p:first-of-type {
+    font-size: var(--font-size-large);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
 }
 
 /* Reading optimal line length */

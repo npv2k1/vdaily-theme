@@ -23,7 +23,7 @@
                     } else {
                         ?>
                         <h1 class="site-title">
-                            <a href="<?php echo esc_url(home_url('/')); ?>" rel="home">
+                            <a href="<?php echo esc_url(home_url('/')); ?>" rel="home" aria-label="<?php bloginfo('name'); ?> - Go to homepage">
                                 2k1
                             </a>
                         </h1>
@@ -36,8 +36,8 @@
 
                 <div class="header-icons">
                     <?php vdaily_social_media_icons('header'); ?>
-                    <button class="header-icon search-toggle" aria-label="Search">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <button class="header-icon search-toggle" aria-label="Open search" aria-expanded="false">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <circle cx="11" cy="11" r="8"></circle>
                             <path d="m21 21-4.35-4.35"></path>
                         </svg>
@@ -56,3 +56,4 @@
 
     <div id="content" class="site-content">
         <div class="container">
+            <main id="primary" class="site-main" role="main">
