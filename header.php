@@ -13,8 +13,6 @@
 <?php vdaily_skip_link(); ?>
 
 <div id="page" class="site">
-    <a class="skip-link screen-reader-text" href="#primary">Skip to content</a>
-    
     <header id="masthead" class="site-header" role="banner">
         <div class="container">
             <div class="header-wrapper">

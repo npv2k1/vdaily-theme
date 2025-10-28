@@ -15,7 +15,7 @@
             <div class="post-thumbnail">
                 <?php 
                 the_post_thumbnail('vdaily-archive', array(
-                    'alt' => get_the_title(),
+                    'alt' => '',  // Empty alt since the image is decorative within the linked context
                 )); 
                 ?>
             </div>
