@@ -1,3 +1,4 @@
+            </main><!-- #primary -->
         </div><!-- .container -->
     </div><!-- #content -->
 
@@ -17,6 +18,7 @@
                         'theme_location' => 'footer',
                         'menu_id'        => 'footer-menu',
                         'container'      => 'nav',
+                        'container_aria_label' => esc_attr__('Footer Navigation', 'vdaily-theme'),
                         'menu_class'     => 'footer-menu',
                         'fallback_cb'    => false,
                     ));
@@ -25,7 +27,7 @@
 
                 <div class="footer-social">
                     <h3 class="footer-title"><?php esc_html_e('Follow Us', 'vdaily-theme'); ?></h3>
-                    <div class="footer-social-icons">
+                    <div class="footer-social-icons" role="list">
                         <?php vdaily_social_media_icons('footer'); ?>
                     </div>
                 </div>
