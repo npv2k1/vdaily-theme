@@ -30,12 +30,13 @@
     --line-height-base: 1.7;
     --line-height-heading: 1.3;
     
-    /* Spacing */
+    /* Spacing - Enhanced for better visual hierarchy */
     --spacing-xs: 0.5rem;
     --spacing-sm: 1rem;
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
+    --spacing-xxl: 4rem;
     
     /* Layout */
     --content-width: 700px;
@@ -47,11 +48,19 @@
     
     /* Transitions */
     --transition-speed: 0.2s;
+    --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
     
     /* Shadows */
     --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
     --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.15);
+    
+    /* Interactive States */
+    --focus-ring: 0 0 0 3px rgba(0, 102, 204, 0.3);
+    --hover-transform: translateY(-2px);
+    
+    /* Touch Targets - Minimum 44x44px for mobile */
+    --touch-target-min: 44px;
 }
 
 /* Responsive breakpoints */

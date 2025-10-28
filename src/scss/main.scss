@@ -35,13 +35,23 @@ img {
 a {
     color: var(--color-accent);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color var(--transition-speed) var(--transition-ease);
 }
 
 a:hover,
 a:focus {
     color: var(--color-accent-dark);
     text-decoration: underline;
+}
+
+a:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+/* Ensure sufficient contrast for visited links */
+a:visited {
+    color: var(--color-accent-dark);
 }
 
 /* Skip Link */
@@ -51,11 +61,46 @@ a:focus {
     left: 0;
     background: var(--color-accent);
     color: #fff;
-    padding: 0.5rem 1rem;
+    padding: var(--spacing-md) var(--spacing-lg);
     text-decoration: none;
     z-index: 999;
+    border-radius: 0 0 var(--border-radius) 0;
+    font-weight: 600;
+    transition: top var(--transition-speed) var(--transition-ease);
 }
 
 .skip-link:focus {
     top: 0;
+    outline: 2px solid #fff;
+    outline-offset: -4px;
+}
+
+/* Screen reader only text */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
